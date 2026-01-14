@@ -72,6 +72,17 @@ export default function Pricing() {
         fetchPlans();
     }, [t]);
 
+    React.useEffect(() => {
+        if (!loading && window.location.hash === '#pricing') {
+            const element = document.getElementById('pricing');
+            if (element) {
+                setTimeout(() => {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                }, 100); // Small delay to ensuring rendering is complete
+            }
+        }
+    }, [loading]);
+
     if (loading) {
         return (
             <section className="section pricing-section" id="pricing">
